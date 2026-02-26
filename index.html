@@ -10,156 +10,128 @@
 
 <style>
 
-/* ================= BODY ================= */
-
 body{
 
 margin:0;
+font-family:Segoe UI, Arial;
+background: radial-gradient(circle at top, #0b1d33, #02050b);
+color:white;
 
-font-family: "Segoe UI", Arial, sans-serif;
+}
 
-background:
+html{
+scroll-behavior:smooth;
+}
 
-radial-gradient(circle at center,
 
-#0e2a47 0%,
+/* NAVBAR */
 
-#071a2f 40%,
+.navbar{
 
-#02050b 85%,
+position:fixed;
+top:0;
+width:100%;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+background:transparent;
+z-index:1000;
 
-#000000 100%
+}
 
-);
+.navbar a{
+
+color:#aaa;
+text-decoration:none;
+margin-left:20px;
+
+}
+
+.navbar a:hover{
 
 color:white;
 
 }
 
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
 
 height:100vh;
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 align-items:center;
-
+position:relative;
 text-align:center;
 
 }
 
 
-/* ================= ATL ================= */
+.halo{
+
+position:absolute;
+
+width:800px;
+height:800px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(255,255,255,0.08),
+rgba(255,255,255,0.02),
+transparent);
+
+}
+
 
 .logo{
 
-font-size:100px;
-
-font-weight:700;
-
-letter-spacing:4px;
-
-color:#e6edf3;
+font-size:80px;
+font-weight:bold;
 
 }
-
-
-/* ================= COMPANY ================= */
 
 .company{
 
-font-size:52px;
-
-margin-top:20px;
-
-font-weight:500;
-
-color:#dce3ea;
+font-size:48px;
 
 }
-
-
-/* ================= TAGLINE ================= */
 
 .tagline{
 
-font-size:26px;
-
-margin-top:25px;
-
+font-size:24px;
 color:#5fd1c8;
 
-letter-spacing:1px;
-
 }
-
-
-/* ================= BUTTONS ================= */
 
 .buttons{
 
-margin-top:50px;
+margin-top:40px;
 
 }
-
 
 .buttons a{
 
-display:inline-block;
-
-padding:18px 45px;
-
+border:1px solid #3a4a66;
+padding:15px 30px;
 margin:10px;
-
-border-radius:10px;
-
-border:1px solid rgba(255,255,255,0.2);
-
+border-radius:8px;
 color:white;
-
 text-decoration:none;
 
-font-size:18px;
-
-background: rgba(255,255,255,0.02);
-
-backdrop-filter: blur(10px);
-
-transition:0.3s;
-
 }
 
 
-.buttons a:hover{
-
-background: rgba(255,255,255,0.08);
-
-border:1px solid rgba(255,255,255,0.4);
-
-transform:translateY(-3px);
-
-}
-
-
-/* ================= SECTION ================= */
+/* SECTION */
 
 .section{
 
 padding:120px 20px;
-
 text-align:center;
 
-background:#02050b;
-
 }
-
 
 .section h2{
 
@@ -167,33 +139,51 @@ font-size:36px;
 
 }
 
-
 .section p{
 
 max-width:800px;
-
 margin:auto;
-
-margin-top:20px;
-
-font-size:18px;
-
-color:#9fb0c0;
+color:#aaa;
 
 }
 
 
-/* ================= FOOTER ================= */
+/* PRODUCTS */
+
+.products{
+
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+
+}
+
+.card{
+
+padding:30px;
+border:1px solid #3a4a66;
+border-radius:10px;
+
+}
+
+.card a{
+
+color:white;
+text-decoration:none;
+
+}
+
+
+/* FOOTER */
 
 .footer{
 
 padding:40px;
-
-text-align:center;
-
 background:black;
-
-color:#777;
+text-align:center;
+color:#666;
 
 }
 
@@ -205,121 +195,134 @@ color:#777;
 
 
 
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div>ATL</div>
+
+<div>
+
+<a href="#about">About</a>
+
+<a href="#products">Products</a>
+
+<a href="zipi.html">ZIPI</a>
+
+</div>
+
+</div>
+
+
+
+<!-- HERO -->
+
 <div class="hero">
 
+<div class="halo"></div>
 
-<div class="logo">
+<div class="logo">ATL</div>
 
-ATL
+<div class="company">Arkay Technology Ltd.</div>
 
-</div>
-
-
-<div class="company">
-
-Arkay Technology Ltd.
-
-</div>
-
-
-<div class="tagline">
-
-Where Data Illuminates
-
-</div>
-
+<div class="tagline">Where Data Illuminates</div>
 
 <div class="buttons">
 
+<a href="#products">Explore Products</a>
 
-<a href="#about">
-
-Know More
-
-</a>
-
-
-<a href="#products">
-
-Products
-
-</a>
-
-
-<a href="zipi.html">
-
-Talk to ZIPI
-
-</a>
-
+<a href="zipi.html">Launch ZIPI</a>
 
 </div>
-
 
 </div>
 
 
 
-<!-- ABOUT -->
+<!-- ABOUT SECTION -->
 
 <div id="about" class="section">
 
-
-<h2>
-
-About Arkay Technology
-
-</h2>
-
+<h2>About Arkay Technology</h2>
 
 <p>
 
-Arkay Technology Ltd. builds advanced artificial intelligence systems including conversational AI, voice intelligence, computer vision, and predictive analytics.
+Arkay Technology builds advanced artificial intelligence systems across conversational AI, computer vision, and predictive intelligence.
 
 </p>
-
 
 </div>
 
 
 
-<!-- PRODUCTS -->
+<!-- PRODUCTS SECTION -->
 
 <div id="products" class="section">
 
+<h2>Products</h2>
 
-<h2>
+<p>Explore Arkay ecosystem</p>
 
-Products
+<div class="products">
 
-</h2>
+<div class="card">
+
+<a href="zipi.html">
+
+ZIPI AI
+
+</a>
+
+</div>
 
 
-<p>
+<div class="card">
 
-Explore Arkay Technology AI ecosystem.
+<a href="voca.html">
 
-</p>
+VOCA AI
 
+</a>
+
+</div>
+
+
+<div class="card">
+
+<a href="akriti.html">
+
+AKRITI AI
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<a href="catalyst.html">
+
+Catalyst AI
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
 
 
+<!-- FOOTER -->
+
 <div class="footer">
 
-
 Arkay Technology Ltd. © 2026
-
-<br>
-
-Where Data Illuminates
-
 
 </div>
 
 
 
 </body>
-
 </html>
