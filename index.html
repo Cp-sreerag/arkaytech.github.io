@@ -10,17 +10,14 @@
 
 <style>
 
-/* =========================
-GLOBAL
-========================= */
+/* ================= GLOBAL ================= */
 
 body{
 
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Segoe UI, Arial, sans-serif;
 background: radial-gradient(circle at top, #0b1d33, #02050b);
 color:white;
-overflow-x:hidden;
 
 }
 
@@ -31,9 +28,43 @@ scroll-behavior:smooth;
 }
 
 
-/* =========================
-HERO SECTION
-========================= */
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+position:absolute;
+top:0;
+width:100%;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.navbar .brand{
+
+font-size:20px;
+font-weight:bold;
+
+}
+
+.navbar a{
+
+color:#aaa;
+text-decoration:none;
+margin-left:20px;
+
+}
+
+.navbar a:hover{
+
+color:white;
+
+}
+
+
+/* ================= HERO ================= */
 
 .hero{
 
@@ -48,50 +79,37 @@ position:relative;
 }
 
 
-/* =========================
-FLAGSHIP CRESCENT
-========================= */
+/* HALO */
 
-.crescent-bg{
+.halo{
 
 position:absolute;
 
-width:700px;
-height:700px;
+width:800px;
+height:800px;
 
 border-radius:50%;
 
-border-right:3px solid rgba(255,255,255,0.12);
+background:
 
-top:50%;
-left:50%;
-
-transform:translate(-50%, -50%);
-
-box-shadow: 40px 0 120px rgba(255,255,255,0.08);
-
-filter:blur(1px);
+radial-gradient(circle,
+rgba(255,255,255,0.06) 0%,
+rgba(255,255,255,0.03) 30%,
+rgba(0,0,0,0) 60%);
 
 }
 
 
-/* =========================
-LOGO TEXT
-========================= */
+/* TEXT */
 
 .logo{
 
 font-size:80px;
 font-weight:bold;
-letter-spacing:4px;
+letter-spacing:6px;
 z-index:2;
 
 }
-
-
-/* =========================
-COMPANY NAME
-========================= */
 
 .company{
 
@@ -100,11 +118,6 @@ margin-top:20px;
 z-index:2;
 
 }
-
-
-/* =========================
-TAGLINE
-========================= */
 
 .tagline{
 
@@ -116,9 +129,7 @@ z-index:2;
 }
 
 
-/* =========================
-BUTTONS
-========================= */
+/* BUTTONS */
 
 .buttons{
 
@@ -132,9 +143,8 @@ z-index:2;
 text-decoration:none;
 color:white;
 border:1px solid #3a4a66;
-padding:15px 30px;
+padding:15px 35px;
 margin:10px;
-display:inline-block;
 border-radius:8px;
 transition:0.3s;
 
@@ -143,14 +153,11 @@ transition:0.3s;
 .buttons a:hover{
 
 background:#1a2a44;
-transform:translateY(-2px);
 
 }
 
 
-/* =========================
-SECTIONS
-========================= */
+/* ================= SECTION ================= */
 
 .section{
 
@@ -172,45 +179,48 @@ margin:auto;
 margin-top:20px;
 font-size:18px;
 color:#aaa;
-line-height:1.6;
 
 }
 
 
-/* =========================
-PRODUCT CARDS
-========================= */
+/* ================= PRODUCTS ================= */
 
-.product-container{
+.products{
 
+display:flex;
+justify-content:center;
+gap:30px;
 margin-top:50px;
+flex-wrap:wrap;
 
 }
 
-.product-container a{
+.card{
 
-display:inline-block;
-margin:15px;
-padding:18px 35px;
+width:200px;
+padding:30px;
 border:1px solid #3a4a66;
-border-radius:8px;
-color:white;
-text-decoration:none;
+border-radius:10px;
 transition:0.3s;
 
 }
 
-.product-container a:hover{
+.card:hover{
 
 background:#1a2a44;
-transform:translateY(-3px);
+transform:translateY(-5px);
+
+}
+
+.card a{
+
+color:white;
+text-decoration:none;
 
 }
 
 
-/* =========================
-FOOTER
-========================= */
+/* ================= FOOTER ================= */
 
 .footer{
 
@@ -228,32 +238,19 @@ color:#666;
 <body>
 
 
+<!-- NAVBAR -->
 
-<!-- =========================
-HERO
-========================= -->
+<div class="navbar">
 
-<div class="hero">
+<div class="brand">ATL</div>
 
-<div class="crescent-bg"></div>
+<div>
 
-<div class="logo">
-ATL
-</div>
-
-<div class="company">
-Arkay Technology Ltd.
-</div>
-
-<div class="tagline">
-Where Data Illuminates
-</div>
-
-<div class="buttons">
+<a href="#about">About</a>
 
 <a href="#products">Products</a>
 
-<a href="zipi.html">Talk to ZIPI</a>
+<a href="zipi.html">ZIPI</a>
 
 </div>
 
@@ -261,19 +258,41 @@ Where Data Illuminates
 
 
 
-<!-- =========================
-ABOUT
-========================= -->
+<!-- HERO -->
 
-<div class="section">
+<div class="hero">
+
+<div class="halo"></div>
+
+<div class="logo">ATL</div>
+
+<div class="company">Arkay Technology Ltd.</div>
+
+<div class="tagline">Where Data Illuminates</div>
+
+<div class="buttons">
+
+<a href="#products">Explore Products</a>
+
+<a href="zipi.html">Launch ZIPI</a>
+
+</div>
+
+</div>
+
+
+
+<!-- ABOUT -->
+
+<div id="about" class="section">
 
 <h2>About Arkay Technology</h2>
 
 <p>
 
-Arkay Technology Ltd. builds advanced artificial intelligence systems including conversational AI, voice intelligence, computer vision, and predictive analytics.
+Arkay Technology builds advanced artificial intelligence systems including conversational AI, computer vision, and predictive intelligence platforms.
 
-We focus on developing intelligent platforms that empower individuals, enterprises, and governments with next-generation AI capabilities.
+Our goal is to develop autonomous intelligent systems that shape the future.
 
 </p>
 
@@ -281,58 +300,71 @@ We focus on developing intelligent platforms that empower individuals, enterpris
 
 
 
-<!-- =========================
-PRODUCTS
-========================= -->
+<!-- PRODUCTS -->
 
 <div id="products" class="section">
 
-<h2>Our Products</h2>
+<h2>Products</h2>
 
-<p>
-Explore Arkay Technology AI ecosystem.
-</p>
+<p>Explore Arkay AI ecosystem</p>
 
+<div class="products">
 
-<div class="product-container">
+<div class="card">
 
-<a href="zipi.html">ZIPI AI</a>
+<a href="zipi.html">
 
-<a href="voca.html">VOCA AI</a>
+<h3>ZIPI AI</h3>
 
-<a href="akriti.html">AKRITI AI</a>
+<p>AI Assistant</p>
 
-<a href="catalyst.html">Catalyst AI</a>
+</a>
+
+</div>
+
+<div class="card">
+
+<a href="voca.html">
+
+<h3>VOCA AI</h3>
+
+<p>Voice Intelligence</p>
+
+</a>
+
+</div>
+
+<div class="card">
+
+<a href="akriti.html">
+
+<h3>AKRITI AI</h3>
+
+<p>Computer Vision</p>
+
+</a>
+
+</div>
+
+<div class="card">
+
+<a href="catalyst.html">
+
+<h3>Catalyst AI</h3>
+
+<p>Market Intelligence</p>
+
+</a>
 
 </div>
 
 </div>
 
-
-
-<!-- =========================
-WHY
-========================= -->
-
-<div class="section">
-
-<h2>Why Arkay Technology</h2>
-
-<p>
-
-We design AI systems with focus on intelligence, scalability, and real-world deployment.
-
-Our mission is to build autonomous intelligent platforms that evolve and create meaningful impact.
-
-</p>
-
 </div>
 
 
 
-<!-- =========================
-FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <div class="footer">
 
