@@ -26,37 +26,58 @@ scroll-behavior:smooth;
 }
 
 
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR FIXED ================= */
 
 .navbar{
 
 position:fixed;
 top:0;
+left:0;
 width:100%;
-padding:20px 40px;
+
+padding:15px 5%;
+
 display:flex;
 justify-content:space-between;
-background:transparent;
+align-items:center;
+
+box-sizing:border-box;
+
 z-index:1000;
 
 }
 
-.navbar .brand{
+
+.brand{
 
 font-weight:bold;
 font-size:20px;
 
 }
 
-.navbar a{
 
-color:#aaa;
-text-decoration:none;
-margin-left:25px;
+/* NAV LINKS CONTAINER */
+
+.nav-links{
+
+display:flex;
+gap:25px;
+
+flex-wrap:wrap;
 
 }
 
-.navbar a:hover{
+
+.nav-links a{
+
+color:#aaa;
+text-decoration:none;
+font-size:16px;
+
+}
+
+
+.nav-links a:hover{
 
 color:white;
 
@@ -75,7 +96,10 @@ align-items:center;
 text-align:center;
 position:relative;
 
+padding:0 20px;
+
 }
+
 
 .halo{
 
@@ -91,20 +115,17 @@ transparent);
 
 }
 
+
 .logo{
 
 font-size:80px;
 font-weight:bold;
-letter-spacing:6px;
-z-index:2;
 
 }
 
 .company{
 
 font-size:48px;
-margin-top:20px;
-z-index:2;
 
 }
 
@@ -112,33 +133,25 @@ z-index:2;
 
 font-size:24px;
 color:#5fd1c8;
-margin-top:20px;
-z-index:2;
 
 }
+
 
 .buttons{
 
 margin-top:40px;
-z-index:2;
 
 }
+
 
 .buttons a{
 
 border:1px solid #3a4a66;
-padding:15px 35px;
+padding:15px 30px;
 margin:10px;
 border-radius:8px;
 color:white;
 text-decoration:none;
-transition:0.3s;
-
-}
-
-.buttons a:hover{
-
-background:#1a2a44;
 
 }
 
@@ -152,11 +165,13 @@ text-align:center;
 
 }
 
+
 .section h2{
 
 font-size:36px;
 
 }
+
 
 .section p{
 
@@ -182,6 +197,7 @@ flex-wrap:wrap;
 
 }
 
+
 .card{
 
 width:250px;
@@ -192,6 +208,7 @@ transition:0.3s;
 
 }
 
+
 .card:hover{
 
 background:#1a2a44;
@@ -199,17 +216,6 @@ transform:translateY(-5px);
 
 }
 
-.card h3{
-
-margin-bottom:10px;
-
-}
-
-.card p{
-
-font-size:15px;
-
-}
 
 .card a{
 
@@ -226,6 +232,7 @@ text-decoration:none;
 margin-top:30px;
 
 }
+
 
 .contact a{
 
@@ -246,6 +253,30 @@ color:#666;
 
 }
 
+
+/* ================= MOBILE FIX ================= */
+
+@media(max-width:700px){
+
+.logo{
+font-size:50px;
+}
+
+.company{
+font-size:28px;
+}
+
+.tagline{
+font-size:18px;
+}
+
+.nav-links{
+gap:15px;
+font-size:14px;
+}
+
+}
+
 </style>
 
 </head>
@@ -260,7 +291,7 @@ color:#666;
 
 <div class="brand">ATL</div>
 
-<div>
+<div class="nav-links">
 
 <a href="#about">About</a>
 
@@ -308,19 +339,19 @@ color:#666;
 
 <p>
 
-Arkay Technology Ltd. is an artificial intelligence company focused on building next-generation intelligent systems that can understand, reason, and assist humans across digital and physical environments.
+Arkay Technology Ltd. is an artificial intelligence company focused on building next-generation intelligent systems that understand, reason, and assist.
 
 </p>
 
 <p>
 
-Our work spans conversational AI, voice intelligence, computer vision, and predictive analytics. We design and develop autonomous AI platforms that enhance decision-making, automate workflows, and unlock new capabilities for individuals, enterprises, and governments.
+We develop conversational AI, voice intelligence, computer vision, and predictive platforms for real-world deployment.
 
 </p>
 
 <p>
 
-Our long-term mission is to create evolving intelligent systems that integrate deeply into real-world applications, shaping the future of human-AI collaboration.
+Our mission is to build evolving autonomous intelligence systems that transform how humans interact with technology.
 
 </p>
 
@@ -336,13 +367,14 @@ Our long-term mission is to create evolving intelligent systems that integrate d
 
 <p>
 
-Our platforms are built using modern artificial intelligence and software engineering technologies including machine learning, deep learning, natural language processing, computer vision, and scalable backend systems.
+Our systems use modern AI technologies including:
 
-</p>
-
-<p>
-
-Core stack includes Python, FastAPI, LLM systems, neural networks, and real-time inference infrastructure.
+Machine Learning  
+Deep Learning  
+LLM Systems  
+Computer Vision  
+FastAPI  
+Python Infrastructure  
 
 </p>
 
@@ -356,7 +388,7 @@ Core stack includes Python, FastAPI, LLM systems, neural networks, and real-time
 
 <h2>Products</h2>
 
-<p>Explore Arkay Technology AI ecosystem</p>
+<p>Explore Arkay ecosystem</p>
 
 
 <div class="products">
@@ -368,16 +400,11 @@ Core stack includes Python, FastAPI, LLM systems, neural networks, and real-time
 
 <h3>ZIPI AI</h3>
 
-<p>
-
-Autonomous conversational AI assistant capable of reasoning, assisting, and interacting naturally.
-
-</p>
+<p>Autonomous AI Assistant</p>
 
 </a>
 
 </div>
-
 
 
 <div class="card">
@@ -386,16 +413,11 @@ Autonomous conversational AI assistant capable of reasoning, assisting, and inte
 
 <h3>VOCA AI</h3>
 
-<p>
-
-Voice intelligence platform for speech understanding, analysis, and interaction.
-
-</p>
+<p>Voice Intelligence Platform</p>
 
 </a>
 
 </div>
-
 
 
 <div class="card">
@@ -404,16 +426,11 @@ Voice intelligence platform for speech understanding, analysis, and interaction.
 
 <h3>AKRITI AI</h3>
 
-<p>
-
-Computer vision system for visual recognition and intelligent image understanding.
-
-</p>
+<p>Computer Vision Platform</p>
 
 </a>
 
 </div>
-
 
 
 <div class="card">
@@ -422,11 +439,7 @@ Computer vision system for visual recognition and intelligent image understandin
 
 <h3>Catalyst AI</h3>
 
-<p>
-
-Predictive intelligence platform for market analysis and forecasting.
-
-</p>
+<p>Market Intelligence Platform</p>
 
 </a>
 
@@ -445,26 +458,19 @@ Predictive intelligence platform for market analysis and forecasting.
 
 <h2>Contact</h2>
 
-<p>
-
-For collaborations, partnerships, or inquiries:
-
-</p>
-
-<div class="contact">
-
 <p>Email: cpsreerag@gmail.com</p>
 
 <p>
 
 GitHub:
-<a href="https://github.com/Cp-sreerag" target="_blank">
+
+<a href="https://github.com/Cp-sreerag">
+
 github.com/Cp-sreerag
+
 </a>
 
 </p>
-
-</div>
 
 </div>
 
@@ -475,10 +481,6 @@ github.com/Cp-sreerag
 <div class="footer">
 
 Arkay Technology Ltd. © 2026
-
-<br><br>
-
-Where Data Illuminates
 
 </div>
 
