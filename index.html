@@ -45,6 +45,9 @@ box-sizing:border-box;
 
 z-index:1000;
 
+background: rgba(2,5,11,0.6);
+backdrop-filter: blur(6px);
+
 }
 
 
@@ -120,12 +123,14 @@ transparent);
 
 font-size:80px;
 font-weight:bold;
+z-index:2;
 
 }
 
 .company{
 
 font-size:48px;
+z-index:2;
 
 }
 
@@ -133,6 +138,7 @@ font-size:48px;
 
 font-size:24px;
 color:#5fd1c8;
+z-index:2;
 
 }
 
@@ -140,6 +146,7 @@ color:#5fd1c8;
 .buttons{
 
 margin-top:40px;
+z-index:2;
 
 }
 
@@ -155,6 +162,12 @@ text-decoration:none;
 
 }
 
+.buttons a:hover{
+
+background:#1a2a44;
+
+}
+
 
 /* ================= SECTION ================= */
 
@@ -162,6 +175,10 @@ text-decoration:none;
 
 padding:120px 20px;
 text-align:center;
+
+/* THIS FIXES NAVBAR OVERLAP ISSUE */
+
+scroll-margin-top:80px;
 
 }
 
@@ -246,10 +263,12 @@ text-decoration:none;
 
 .footer{
 
-padding:40px;
+padding:60px 40px;
 background:black;
 text-align:center;
 color:#666;
+
+margin-top:80px;
 
 }
 
@@ -339,19 +358,19 @@ font-size:14px;
 
 <p>
 
-Arkay Technology Ltd. is an artificial intelligence company focused on building next-generation intelligent systems that understand, reason, and assist.
+Arkay Technology Ltd. is an artificial intelligence company focused on building next-generation intelligent systems that understand, reason, and assist humans across digital and real-world environments.
 
 </p>
 
 <p>
 
-We develop conversational AI, voice intelligence, computer vision, and predictive platforms for real-world deployment.
+We specialize in conversational AI, voice intelligence, computer vision, and predictive intelligence platforms designed for individuals, enterprises, and government applications.
 
 </p>
 
 <p>
 
-Our mission is to build evolving autonomous intelligence systems that transform how humans interact with technology.
+Our long-term mission is to create evolving autonomous intelligence systems that integrate deeply into everyday life and redefine human-AI collaboration.
 
 </p>
 
@@ -367,14 +386,13 @@ Our mission is to build evolving autonomous intelligence systems that transform 
 
 <p>
 
-Our systems use modern AI technologies including:
+Our platforms are built using modern artificial intelligence technologies including Machine Learning, Deep Learning, Large Language Models, Computer Vision, and scalable backend infrastructure using Python and FastAPI.
 
-Machine Learning  
-Deep Learning  
-LLM Systems  
-Computer Vision  
-FastAPI  
-Python Infrastructure  
+</p>
+
+<p>
+
+We focus on building intelligent systems that are scalable, efficient, and capable of real-world deployment.
 
 </p>
 
@@ -388,7 +406,7 @@ Python Infrastructure
 
 <h2>Products</h2>
 
-<p>Explore Arkay ecosystem</p>
+<p>Explore Arkay Technology AI ecosystem</p>
 
 
 <div class="products">
@@ -464,7 +482,7 @@ Python Infrastructure
 
 GitHub:
 
-<a href="https://github.com/Cp-sreerag">
+<a href="https://github.com/Cp-sreerag" target="_blank">
 
 github.com/Cp-sreerag
 
@@ -481,6 +499,10 @@ github.com/Cp-sreerag
 <div class="footer">
 
 Arkay Technology Ltd. © 2026
+
+<br><br>
+
+Where Data Illuminates
 
 </div>
 
