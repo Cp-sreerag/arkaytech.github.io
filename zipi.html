@@ -10,158 +10,110 @@
 
 <style>
 
-/* ================= GLOBAL ================= */
-
 body{
-
 margin:0;
 font-family:Segoe UI, Arial, sans-serif;
 background:#02050b;
 color:white;
-
 display:flex;
 flex-direction:column;
 height:100vh;
-
 }
 
-
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
-
 padding:15px 25px;
 border-bottom:1px solid #1a2a44;
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 }
 
-.header .title{
-
+.title{
 font-weight:bold;
 font-size:18px;
-
 }
 
-.header a{
-
+.back{
 color:#5fd1c8;
 text-decoration:none;
-
 }
 
 
-/* ================= CHAT AREA ================= */
+/* CHAT */
 
-.chat-container{
-
+.chat{
 flex:1;
-padding:20px;
 overflow-y:auto;
-
+padding:20px;
 display:flex;
 flex-direction:column;
-
 }
 
-
-/* MESSAGE */
-
 .message{
-
 max-width:700px;
 padding:12px 18px;
 margin:8px 0;
 border-radius:10px;
 line-height:1.5;
-
 }
-
-
-/* USER MESSAGE */
 
 .user{
-
 align-self:flex-end;
 background:#1a2a44;
-
 }
-
-
-/* ZIPI MESSAGE */
 
 .bot{
-
 align-self:flex-start;
 background:#0b1d33;
-
 border:1px solid #1a2a44;
-
 }
 
 
-/* ================= INPUT AREA ================= */
+/* INPUT */
 
 .input-area{
-
 display:flex;
 padding:15px;
 border-top:1px solid #1a2a44;
-
 }
 
-
-.input-area input{
-
+input{
 flex:1;
 padding:12px;
 border-radius:8px;
 border:none;
 outline:none;
-
 background:#0b1d33;
 color:white;
-
 }
 
-
-.input-area button{
-
+button{
 margin-left:10px;
 padding:12px 20px;
-
 background:#1a2a44;
 color:white;
-
 border:none;
 border-radius:8px;
-
 cursor:pointer;
-
 }
 
-
-.input-area button:hover{
-
+button:hover{
 background:#24395e;
-
 }
 
 
-/* ================= SCROLLBAR ================= */
+/* VOICE BUTTON */
 
-.chat-container::-webkit-scrollbar{
-
-width:6px;
-
+.voice-btn{
+background:#5fd1c8;
+color:black;
+font-weight:bold;
 }
 
-.chat-container::-webkit-scrollbar-thumb{
-
-background:#1a2a44;
-
+.voice-btn:hover{
+background:#4ab5ad;
 }
 
 </style>
@@ -177,7 +129,7 @@ background:#1a2a44;
 
 <div class="title">ZIPI AI</div>
 
-<a href="./">← Back to Arkay</a>
+<a class="back" href="./">← Back to Arkay</a>
 
 </div>
 
@@ -185,7 +137,7 @@ background:#1a2a44;
 
 <!-- CHAT -->
 
-<div class="chat-container" id="chat">
+<div class="chat" id="chat">
 
 <div class="message bot">
 Hello. I am ZIPI. How can I assist you today?
@@ -200,22 +152,26 @@ Hello. I am ZIPI. How can I assist you today?
 <div class="input-area">
 
 <input
-type="text"
 id="input"
+type="text"
 placeholder="Type your message..."
 >
 
-<button onclick="sendMessage()">
-Send
-</button>
+<button onclick="sendMessage()">Send</button>
+
+<button class="voice-btn" onclick="stopVoice()">Stop Voice</button>
 
 </div>
 
 
 
-<!-- SCRIPT -->
-
 <script>
+
+
+let synth = window.speechSynthesis;
+
+
+/* SEND MESSAGE */
 
 function sendMessage(){
 
@@ -223,52 +179,78 @@ let input = document.getElementById("input");
 
 let text = input.value;
 
-if(text.trim() === "") return;
+if(text === "") return;
 
 
-/* USER MESSAGE */
+addMessage(text, "user");
 
-let chat = document.getElementById("chat");
-
-let userMsg = document.createElement("div");
-
-userMsg.className = "message user";
-
-userMsg.innerText = text;
-
-chat.appendChild(userMsg);
+input.value="";
 
 
-/* CLEAR INPUT */
+addMessage("Thinking...", "bot");
 
-input.value = "";
+let bots = document.querySelectorAll(".bot");
 
+let lastBot = bots[bots.length -1];
 
-/* TEMP BOT REPLY */
-
-let botMsg = document.createElement("div");
-
-botMsg.className = "message bot";
-
-botMsg.innerText = "Thinking...";
-
-chat.appendChild(botMsg);
-
-
-/* AUTO SCROLL */
-
-chat.scrollTop = chat.scrollHeight;
-
-
-/* FAKE RESPONSE FOR NOW */
 
 setTimeout(()=>{
 
-botMsg.innerText = "This is a demo response. Backend connection coming next.";
+let reply = "This is a demo voice response. ZIPI voice system is active.";
+
+lastBot.innerText = reply;
+
+speak(reply);
 
 },1000);
 
 }
+
+
+/* ADD MESSAGE */
+
+function addMessage(text, type){
+
+let chat = document.getElementById("chat");
+
+let msg = document.createElement("div");
+
+msg.className = "message " + type;
+
+msg.innerText = text;
+
+chat.appendChild(msg);
+
+chat.scrollTop = chat.scrollHeight;
+
+}
+
+
+/* SPEAK */
+
+function speak(text){
+
+let utter = new SpeechSynthesisUtterance(text);
+
+utter.rate = 1;
+
+utter.pitch = 1;
+
+utter.volume = 1;
+
+synth.speak(utter);
+
+}
+
+
+/* STOP */
+
+function stopVoice(){
+
+synth.cancel();
+
+}
+
 
 </script>
 
