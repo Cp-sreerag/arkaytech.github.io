@@ -1,251 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZIPI AI</title>
 
-<title>ZIPI AI | Arkay Technology</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Segoe UI;
-background:#02050b;
-color:white;
-display:flex;
-flex-direction:column;
-height:100vh;
-}
-
-.header{
-padding:15px 25px;
-border-bottom:1px solid #1a2a44;
-display:flex;
-justify-content:space-between;
-}
-
-.chat{
-flex:1;
-overflow-y:auto;
-padding:20px;
-display:flex;
-flex-direction:column;
-}
-
-.message{
-max-width:700px;
-padding:12px 18px;
-margin:8px 0;
-border-radius:10px;
-}
-
-.user{
-align-self:flex-end;
-background:#1a2a44;
-}
-
-.bot{
-align-self:flex-start;
-background:#0b1d33;
-border:1px solid #1a2a44;
-}
-
-.input-area{
-display:flex;
-padding:15px;
-border-top:1px solid #1a2a44;
-}
-
-input{
-flex:1;
-padding:12px;
-background:#0b1d33;
-border:none;
-color:white;
-}
-
-button{
-margin-left:10px;
-padding:12px 20px;
-background:#1a2a44;
-border:none;
-color:white;
-cursor:pointer;
-}
-
-.voice-btn{
-background:#5fd1c8;
-color:black;
-}
-
-</style>
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="header">
+<h1>ZIPI AI Assistant</h1>
 
-<div>ZIPI AI</div>
+<a href="./">← Back</a>
 
-<a href="./" style="color:#5fd1c8;">← Back</a>
+<iframe
 
-</div>
+src="https://cpsreerag-zipi-ai.hf.space"
 
+width="100%"
 
-<div id="chat" class="chat">
+height="800"
 
-<div class="message bot">
+frameborder="0"
 
-Hello. I am ZIPI.
-
-</div>
-
-</div>
-
-
-<div class="input-area">
-
-<input id="input"
-placeholder="Type message"
-onkeydown="if(event.key==='Enter') sendMessage()">
-
-<button onclick="sendMessage()">Send</button>
-
-<button onclick="stopVoice()" class="voice-btn">
-
-Stop Voice
-
-</button>
-
-</div>
-
-
-<script>
-
-let synth=window.speechSynthesis;
-
-
-
-async function sendMessage(){
-
-let input=document.getElementById("input");
-
-let text=input.value;
-
-if(!text) return;
-
-
-addMessage(text,"user");
-
-input.value="";
-
-
-let botMsg=addMessage("Thinking...","bot");
-
-
-try{
-
-let response=await fetch(
-
-"https://cpsreerag-zipi-ai.hf.space/api/predict",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-data:[
-
-text,
-
-[]
-
-]
-
-})
-
-}
-
-);
-
-
-let result=await response.json();
-
-
-console.log(result);
-
-
-let reply=result.data[0][result.data[0].length-1].content;
-
-
-botMsg.innerText=reply;
-
-
-speak(reply);
-
-
-}
-catch(error){
-
-botMsg.innerText="ZIPI connection error.";
-
-console.error(error);
-
-}
-
-}
-
-
-
-function addMessage(text,type){
-
-let chat=document.getElementById("chat");
-
-let msg=document.createElement("div");
-
-msg.className="message "+type;
-
-msg.innerText=text;
-
-chat.appendChild(msg);
-
-chat.scrollTop=chat.scrollHeight;
-
-return msg;
-
-}
-
-
-
-function speak(text){
-
-let utter=new SpeechSynthesisUtterance(text);
-
-synth.speak(utter);
-
-}
-
-
-
-function stopVoice(){
-
-synth.cancel();
-
-}
-
-</script>
-
+></iframe>
 
 </body>
 
