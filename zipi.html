@@ -57,6 +57,7 @@ padding:12px 18px;
 margin:8px 0;
 border-radius:10px;
 line-height:1.5;
+white-space:pre-wrap;
 }
 
 .user{
@@ -155,6 +156,7 @@ Hello. I am ZIPI. How can I assist you today?
 id="input"
 type="text"
 placeholder="Type your message..."
+onkeydown="if(event.key==='Enter'){sendMessage()}"
 >
 
 <button onclick="sendMessage()">Send</button>
@@ -173,7 +175,7 @@ let synth = window.speechSynthesis;
 
 /* SEND MESSAGE */
 
-function sendMessage(){
+async function sendMessage(){
 
 let input = document.getElementById("input");
 
@@ -182,29 +184,65 @@ let text = input.value;
 if(text === "") return;
 
 
+/* USER MESSAGE */
+
 addMessage(text, "user");
 
 input.value="";
 
 
-addMessage("Thinking...", "bot");
+/* BOT THINKING */
 
-let bots = document.querySelectorAll(".bot");
-
-let lastBot = bots[bots.length -1];
+let botMsg = addMessage("Thinking...", "bot");
 
 
-setTimeout(()=>{
+try{
 
-let reply = "This is a demo voice response. ZIPI voice system is active.";
 
-lastBot.innerText = reply;
+let response = await fetch(
+
+"https://cpsreerag-zipi-ai.hf.space/chat",
+
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+text:text
+})
+
+}
+
+);
+
+
+let data = await response.json();
+
+let reply = data.reply;
+
+
+/* SHOW REAL REPLY */
+
+botMsg.innerText = reply;
+
+
+/* SPEAK */
 
 speak(reply);
 
-},1000);
+
+}catch(error){
+
+botMsg.innerText = "Error connecting to ZIPI server.";
 
 }
+
+
+}
+
 
 
 /* ADD MESSAGE */
@@ -222,6 +260,8 @@ msg.innerText = text;
 chat.appendChild(msg);
 
 chat.scrollTop = chat.scrollHeight;
+
+return msg;
 
 }
 
