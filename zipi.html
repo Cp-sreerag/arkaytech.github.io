@@ -1,31 +1,277 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>ZIPI AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
+<title>ZIPI AI | Arkay Technology</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+body{
+
+margin:0;
+font-family:Segoe UI, Arial, sans-serif;
+background:#02050b;
+color:white;
+
+display:flex;
+flex-direction:column;
+height:100vh;
+
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+
+padding:15px 25px;
+border-bottom:1px solid #1a2a44;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.header .title{
+
+font-weight:bold;
+font-size:18px;
+
+}
+
+.header a{
+
+color:#5fd1c8;
+text-decoration:none;
+
+}
+
+
+/* ================= CHAT AREA ================= */
+
+.chat-container{
+
+flex:1;
+padding:20px;
+overflow-y:auto;
+
+display:flex;
+flex-direction:column;
+
+}
+
+
+/* MESSAGE */
+
+.message{
+
+max-width:700px;
+padding:12px 18px;
+margin:8px 0;
+border-radius:10px;
+line-height:1.5;
+
+}
+
+
+/* USER MESSAGE */
+
+.user{
+
+align-self:flex-end;
+background:#1a2a44;
+
+}
+
+
+/* ZIPI MESSAGE */
+
+.bot{
+
+align-self:flex-start;
+background:#0b1d33;
+
+border:1px solid #1a2a44;
+
+}
+
+
+/* ================= INPUT AREA ================= */
+
+.input-area{
+
+display:flex;
+padding:15px;
+border-top:1px solid #1a2a44;
+
+}
+
+
+.input-area input{
+
+flex:1;
+padding:12px;
+border-radius:8px;
+border:none;
+outline:none;
+
+background:#0b1d33;
+color:white;
+
+}
+
+
+.input-area button{
+
+margin-left:10px;
+padding:12px 20px;
+
+background:#1a2a44;
+color:white;
+
+border:none;
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+
+.input-area button:hover{
+
+background:#24395e;
+
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+.chat-container::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+.chat-container::-webkit-scrollbar-thumb{
+
+background:#1a2a44;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1>ZIPI AI Assistant</h1>
 
-<a href="./">← Back</a>
+<!-- HEADER -->
 
-<iframe
+<div class="header">
 
-src="https://cpsreerag-zipi-ai.hf.space"
+<div class="title">ZIPI AI</div>
 
-width="100%"
+<a href="./">← Back to Arkay</a>
 
-height="800"
+</div>
 
-frameborder="0"
 
-></iframe>
+
+<!-- CHAT -->
+
+<div class="chat-container" id="chat">
+
+<div class="message bot">
+Hello. I am ZIPI. How can I assist you today?
+</div>
+
+</div>
+
+
+
+<!-- INPUT -->
+
+<div class="input-area">
+
+<input
+type="text"
+id="input"
+placeholder="Type your message..."
+>
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+</div>
+
+
+
+<!-- SCRIPT -->
+
+<script>
+
+function sendMessage(){
+
+let input = document.getElementById("input");
+
+let text = input.value;
+
+if(text.trim() === "") return;
+
+
+/* USER MESSAGE */
+
+let chat = document.getElementById("chat");
+
+let userMsg = document.createElement("div");
+
+userMsg.className = "message user";
+
+userMsg.innerText = text;
+
+chat.appendChild(userMsg);
+
+
+/* CLEAR INPUT */
+
+input.value = "";
+
+
+/* TEMP BOT REPLY */
+
+let botMsg = document.createElement("div");
+
+botMsg.className = "message bot";
+
+botMsg.innerText = "Thinking...";
+
+chat.appendChild(botMsg);
+
+
+/* AUTO SCROLL */
+
+chat.scrollTop = chat.scrollHeight;
+
+
+/* FAKE RESPONSE FOR NOW */
+
+setTimeout(()=>{
+
+botMsg.innerText = "This is a demo response. Backend connection coming next.";
+
+},1000);
+
+}
+
+</script>
+
 
 </body>
 
