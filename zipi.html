@@ -12,7 +12,7 @@
 
 body{
 margin:0;
-font-family:Segoe UI, Arial, sans-serif;
+font-family:Segoe UI;
 background:#02050b;
 color:white;
 display:flex;
@@ -25,16 +25,6 @@ padding:15px 25px;
 border-bottom:1px solid #1a2a44;
 display:flex;
 justify-content:space-between;
-align-items:center;
-}
-
-.title{
-font-weight:bold;
-}
-
-.back{
-color:#5fd1c8;
-text-decoration:none;
 }
 
 .chat{
@@ -73,9 +63,8 @@ border-top:1px solid #1a2a44;
 input{
 flex:1;
 padding:12px;
-border-radius:8px;
-border:none;
 background:#0b1d33;
+border:none;
 color:white;
 }
 
@@ -83,9 +72,8 @@ button{
 margin-left:10px;
 padding:12px 20px;
 background:#1a2a44;
-color:white;
 border:none;
-border-radius:8px;
+color:white;
 cursor:pointer;
 }
 
@@ -100,21 +88,22 @@ color:black;
 
 <body>
 
-
 <div class="header">
 
-<div class="title">ZIPI AI</div>
+<div>ZIPI AI</div>
 
-<a class="back" href="./">← Back to Arkay</a>
+<a href="./" style="color:#5fd1c8;">← Back</a>
 
 </div>
 
 
 
-<div class="chat" id="chat">
+<div id="chat" class="chat">
 
 <div class="message bot">
-Hello. I am ZIPI. How can I assist you today?
+
+Hello. I am ZIPI.
+
 </div>
 
 </div>
@@ -123,12 +112,16 @@ Hello. I am ZIPI. How can I assist you today?
 
 <div class="input-area">
 
-<input id="input" placeholder="Type your message..."
-onkeydown="if(event.key==='Enter'){sendMessage()}">
+<input id="input" placeholder="Type message"
+onkeydown="if(event.key==='Enter') sendMessage()">
 
 <button onclick="sendMessage()">Send</button>
 
-<button class="voice-btn" onclick="stopVoice()">Stop Voice</button>
+<button onclick="stopVoice()" class="voice-btn">
+
+Stop Voice
+
+</button>
 
 </div>
 
@@ -136,10 +129,9 @@ onkeydown="if(event.key==='Enter'){sendMessage()}">
 
 <script>
 
-let synth = window.speechSynthesis;
+let synth=window.speechSynthesis;
 
 
-/* SEND */
 
 async function sendMessage(){
 
@@ -155,24 +147,36 @@ addMessage(text,"user");
 input.value="";
 
 
-let botMsg=addMessage("Thinking...","bot");
+let bot=addMessage("Thinking...","bot");
 
 
 try{
 
-let response=await fetch(
 
-"https://cpsreerag-zipi-ai.hf.space/chat",
+let res=await fetch(
+
+"https://cpsreerag-zipi-ai.hf.space/run/predict",
 
 {
+
 method:"POST",
 
 headers:{
+
 "Content-Type":"application/json"
+
 },
 
 body:JSON.stringify({
-data:[text,[]]
+
+data:[
+
+text,
+
+[]
+
+]
+
 })
 
 }
@@ -180,29 +184,29 @@ data:[text,[]]
 );
 
 
-let result=await response.json();
+let result=await res.json();
 
-
-/* FIX HERE */
 
 let reply=result.data[0][result.data[0].length-1].content;
 
 
-botMsg.innerText=reply;
+bot.innerText=reply;
+
 
 speak(reply);
 
-}
-catch{
-
-botMsg.innerText="Connection error.";
 
 }
+catch(e){
+
+bot.innerText="Error connecting to ZIPI.";
 
 }
 
 
-/* ADD */
+}
+
+
 
 function addMessage(text,type){
 
@@ -223,7 +227,6 @@ return msg;
 }
 
 
-/* SPEAK */
 
 function speak(text){
 
@@ -234,7 +237,6 @@ synth.speak(utter);
 }
 
 
-/* STOP */
 
 function stopVoice(){
 
@@ -243,7 +245,6 @@ synth.cancel();
 }
 
 </script>
-
 
 </body>
 
