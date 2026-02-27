@@ -40,7 +40,6 @@ max-width:700px;
 padding:12px 18px;
 margin:8px 0;
 border-radius:10px;
-white-space:pre-wrap;
 }
 
 .user{
@@ -97,7 +96,6 @@ color:black;
 </div>
 
 
-
 <div id="chat" class="chat">
 
 <div class="message bot">
@@ -109,10 +107,10 @@ Hello. I am ZIPI.
 </div>
 
 
-
 <div class="input-area">
 
-<input id="input" placeholder="Type message"
+<input id="input"
+placeholder="Type message"
 onkeydown="if(event.key==='Enter') sendMessage()">
 
 <button onclick="sendMessage()">Send</button>
@@ -124,7 +122,6 @@ Stop Voice
 </button>
 
 </div>
-
 
 
 <script>
@@ -147,15 +144,14 @@ addMessage(text,"user");
 input.value="";
 
 
-let bot=addMessage("Thinking...","bot");
+let botMsg=addMessage("Thinking...","bot");
 
 
 try{
 
+let response=await fetch(
 
-let res=await fetch(
-
-"https://cpsreerag-zipi-ai.hf.space/run/predict",
+"https://cpsreerag-zipi-ai.hf.space/api/predict",
 
 {
 
@@ -184,25 +180,29 @@ text,
 );
 
 
-let result=await res.json();
+let result=await response.json();
+
+
+console.log(result);
 
 
 let reply=result.data[0][result.data[0].length-1].content;
 
 
-bot.innerText=reply;
+botMsg.innerText=reply;
 
 
 speak(reply);
 
 
 }
-catch(e){
+catch(error){
 
-bot.innerText="Error connecting to ZIPI.";
+botMsg.innerText="ZIPI connection error.";
+
+console.error(error);
 
 }
-
 
 }
 
@@ -245,6 +245,7 @@ synth.cancel();
 }
 
 </script>
+
 
 </body>
 
