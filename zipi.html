@@ -20,8 +20,6 @@ flex-direction:column;
 height:100vh;
 }
 
-/* HEADER */
-
 .header{
 padding:15px 25px;
 border-bottom:1px solid #1a2a44;
@@ -32,16 +30,12 @@ align-items:center;
 
 .title{
 font-weight:bold;
-font-size:18px;
 }
 
 .back{
 color:#5fd1c8;
 text-decoration:none;
 }
-
-
-/* CHAT */
 
 .chat{
 flex:1;
@@ -56,7 +50,6 @@ max-width:700px;
 padding:12px 18px;
 margin:8px 0;
 border-radius:10px;
-line-height:1.5;
 white-space:pre-wrap;
 }
 
@@ -71,9 +64,6 @@ background:#0b1d33;
 border:1px solid #1a2a44;
 }
 
-
-/* INPUT */
-
 .input-area{
 display:flex;
 padding:15px;
@@ -85,7 +75,6 @@ flex:1;
 padding:12px;
 border-radius:8px;
 border:none;
-outline:none;
 background:#0b1d33;
 color:white;
 }
@@ -100,21 +89,9 @@ border-radius:8px;
 cursor:pointer;
 }
 
-button:hover{
-background:#24395e;
-}
-
-
-/* VOICE BUTTON */
-
 .voice-btn{
 background:#5fd1c8;
 color:black;
-font-weight:bold;
-}
-
-.voice-btn:hover{
-background:#4ab5ad;
 }
 
 </style>
@@ -123,8 +100,6 @@ background:#4ab5ad;
 
 <body>
 
-
-<!-- HEADER -->
 
 <div class="header">
 
@@ -136,8 +111,6 @@ background:#4ab5ad;
 
 
 
-<!-- CHAT -->
-
 <div class="chat" id="chat">
 
 <div class="message bot">
@@ -148,16 +121,10 @@ Hello. I am ZIPI. How can I assist you today?
 
 
 
-<!-- INPUT -->
-
 <div class="input-area">
 
-<input
-id="input"
-type="text"
-placeholder="Type your message..."
-onkeydown="if(event.key==='Enter'){sendMessage()}"
->
+<input id="input" placeholder="Type your message..."
+onkeydown="if(event.key==='Enter'){sendMessage()}">
 
 <button onclick="sendMessage()">Send</button>
 
@@ -169,37 +136,31 @@ onkeydown="if(event.key==='Enter'){sendMessage()}"
 
 <script>
 
-
 let synth = window.speechSynthesis;
 
 
-/* SEND MESSAGE */
+/* SEND */
 
 async function sendMessage(){
 
-let input = document.getElementById("input");
+let input=document.getElementById("input");
 
-let text = input.value;
+let text=input.value;
 
-if(text === "") return;
+if(!text) return;
 
 
-/* USER MESSAGE */
-
-addMessage(text, "user");
+addMessage(text,"user");
 
 input.value="";
 
 
-/* BOT THINKING */
-
-let botMsg = addMessage("Thinking...", "bot");
+let botMsg=addMessage("Thinking...","bot");
 
 
 try{
 
-
-let response = await fetch(
+let response=await fetch(
 
 "https://cpsreerag-zipi-ai.hf.space/chat",
 
@@ -211,7 +172,7 @@ headers:{
 },
 
 body:JSON.stringify({
-text:text
+data:[text,[]]
 })
 
 }
@@ -219,47 +180,43 @@ text:text
 );
 
 
-let data = await response.json();
-
-let reply = data.reply;
+let result=await response.json();
 
 
-/* SHOW REAL REPLY */
+/* FIX HERE */
 
-botMsg.innerText = reply;
+let reply=result.data[0][result.data[0].length-1].content;
 
 
-/* SPEAK */
+botMsg.innerText=reply;
 
 speak(reply);
 
+}
+catch{
 
-}catch(error){
+botMsg.innerText="Connection error.";
 
-botMsg.innerText = "Error connecting to ZIPI server.";
+}
 
 }
 
 
-}
+/* ADD */
 
+function addMessage(text,type){
 
+let chat=document.getElementById("chat");
 
-/* ADD MESSAGE */
+let msg=document.createElement("div");
 
-function addMessage(text, type){
+msg.className="message "+type;
 
-let chat = document.getElementById("chat");
-
-let msg = document.createElement("div");
-
-msg.className = "message " + type;
-
-msg.innerText = text;
+msg.innerText=text;
 
 chat.appendChild(msg);
 
-chat.scrollTop = chat.scrollHeight;
+chat.scrollTop=chat.scrollHeight;
 
 return msg;
 
@@ -270,13 +227,7 @@ return msg;
 
 function speak(text){
 
-let utter = new SpeechSynthesisUtterance(text);
-
-utter.rate = 1;
-
-utter.pitch = 1;
-
-utter.volume = 1;
+let utter=new SpeechSynthesisUtterance(text);
 
 synth.speak(utter);
 
@@ -290,7 +241,6 @@ function stopVoice(){
 synth.cancel();
 
 }
-
 
 </script>
 
